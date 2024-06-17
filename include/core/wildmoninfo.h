@@ -8,7 +8,7 @@
 struct WildPokemon {
     int minLevel = 5;
     int maxLevel = 5;
-    QString species = "SPECIES_NONE";
+    QString species = "NONE";
 };
 
 struct WildMonInfo {

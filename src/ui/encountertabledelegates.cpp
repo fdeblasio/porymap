@@ -17,9 +17,9 @@ void SpeciesComboDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
     QPixmap pm;
     if (!QPixmapCache::find(species, &pm)) {
         // Prefer path from config. If not present, use the path parsed from project files
-        QString path = projectConfig.getPokemonIconPath(species);
+        QString path = projectConfig.getPokemonIconPath("SPECIES_" + species);
         if (path.isEmpty()) {
-            path = this->project->speciesToIconPath.value(species);
+            path = this->project->speciesToIconPath.value("SPECIES_" + species);
         } else {
             path = Project::getExistingFilepath(path);
         }
