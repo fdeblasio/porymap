@@ -13,7 +13,7 @@ SpeciesComboDelegate::SpeciesComboDelegate(Project *project, QObject *parent) : 
 
 void SpeciesComboDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
     const QString species = index.data(Qt::DisplayRole).toString();
-    const QPixmap monIcon = this->project->getSpeciesIcon(species);
+    const QPixmap monIcon = this->project->getSpeciesIcon("SPECIES_" + species);
     painter->drawText(QRect(option.rect.topLeft() + QPoint(36, 0), option.rect.bottomRight()), Qt::AlignLeft | Qt::AlignVCenter, species);
     painter->drawPixmap(QRect(option.rect.topLeft(), QSize(32, 32)), monIcon, monIcon.rect());
 }
