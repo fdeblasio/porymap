@@ -93,17 +93,49 @@ static void dump(const Json::array &values, QString &out, int *indent) {
         out += "[]";
         return;
     }
-    out += "[\n";
-    *indent += 1;
-    for (const auto &value : values) {
-        if (!first) {
-            out += ",\n";
+    if (out.endsWith("_rod\": ")){
+        out += "[";
+        int oldIndent = *indent;
+        *indent -= *indent;
+        for (const auto &value : values) {
+            if (!first) {
+                out += ", ";
+            }
+            value.dump(out, indent);
+            first = false;
         }
-        value.dump(out, indent);
-        first = false;
+        *indent += oldIndent;
+        out += "]";
+    } else if (values.length() > 0){
+        out += "[\n";
+        *indent += 1;
+        if (out.endsWith("\"encounter_rates\": [\n")) {
+            for (const auto &value : values) {
+                if (!first) {
+                    int oldIndent = *indent;
+                    *indent -= *indent;
+                    out += ", ";
+                    value.dump(out, indent);
+                    *indent += oldIndent;
+                } else {
+                    value.dump(out, indent);
+                    first = false;
+                }
+            }
+        } else {
+            for (const auto &value : values) {
+                if (!first) {
+                    out += ",\n";
+                }
+                value.dump(out, indent);
+                first = false;
+            }
+        }
+        *indent -= 1;
+        out += "\n" + QString(*indent * 2, ' ') + "]";
+    } else {
+        out += "[]";
     }
-    *indent -= 1;
-    out += "\n" + QString(*indent * 2, ' ') + "]";
 }
 
 static void dump(const Json::object &values, QString &out, int *indent) {

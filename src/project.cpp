@@ -1397,7 +1397,7 @@ bool Project::saveMap(Map *map, bool skipLayout) {
         }
         mapObj["connections"] = connectionsArr;
     } else {
-        mapObj["connections"] = OrderedJson();
+        mapObj["connections"] = "null";
     }
 
     if (map->isInheritingEvents()) {
