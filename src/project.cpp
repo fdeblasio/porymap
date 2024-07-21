@@ -795,7 +795,7 @@ void Project::saveHealLocationsData(Map *map) {
 
         // Add entry to map/coords table
         QString mapName = !hl.mapName.isEmpty() ? hl.mapName : emptyMapName;
-        locationTableText += QString("    [%1 - 1] = {MAP_GROUP(%2), MAP_NUM(%2), %3, %4},\n")
+        locationTableText += QString("    [%1 - 1] = {MAP_GROUP_AND_NUM(%2), %3, %4},\n")
                              .arg(hl.idName)
                              .arg(mapName)
                              .arg(hl.x)
@@ -804,7 +804,7 @@ void Project::saveHealLocationsData(Map *map) {
         // Add entry to respawn map and npc tables
         if (respawnEnabled) {
             mapName = !hl.respawnMap.isEmpty() ? hl.respawnMap : emptyMapName;
-            respawnMapTableText += QString("    [%1 - 1] = {MAP_GROUP(%2), MAP_NUM(%2)},\n")
+            respawnMapTableText += QString("    [%1 - 1] = {MAP_GROUP_AND_NUM(%2)},\n")
                                    .arg(hl.idName)
                                    .arg(mapName);
 
@@ -2133,8 +2133,8 @@ bool Project::readHealLocations() {
         constants << constantsMatch.next().captured();
     constants.removeDuplicates();
 
-    // Pattern for a map value pair (ex: "MAP_GROUP(PALLET_TOWN), MAP_NUM(PALLET_TOWN)")
-    const QString mapPattern = "MAP_GROUP[\\(\\s]+(?<map>[A-Za-z0-9_]+)[\\s\\)]+,\\s*MAP_NUM[\\(\\s]+(\\1)[\\s\\)]+";
+    // Pattern for a map value pair (ex: "MAP_GROUP_AND_NUM(PALLET_TOWN)")
+    const QString mapPattern = "MAP_GROUP_AND_NUM\\((?<map>[A-Za-z0-9_]+)\\)";
     // Pattern for an x, y number pair
     const QString coordPattern = "\\s*(?<x>[0-9A-Fa-fx]+),\\s*(?<y>[0-9A-Fa-fx]+)"; 
 
@@ -2142,7 +2142,7 @@ bool Project::readHealLocations() {
         // Create regex pattern for e.g. "SPAWN_PALLET_TOWN - 1] = "
         const QString initializerPattern = QString("%1\\s*-\\s*1\\s*\\]\\s*=\\s*").arg(idName);
 
-        // Expression for location data, e.g. "SPAWN_PALLET_TOWN - 1] = {MAP_GROUP(PALLET_TOWN), MAP_NUM(PALLET_TOWN), x, y}"
+        // Expression for location data, e.g. "SPAWN_PALLET_TOWN - 1] = {MAP_GROUP_AND_NUM(PALLET_TOWN), x, y}"
         QRegularExpression locationRegex(QString("%1\\{%2,%3}").arg(initializerPattern).arg(mapPattern).arg(coordPattern));
         QRegularExpressionMatch match = locationRegex.match(text);
 
@@ -2161,7 +2161,7 @@ bool Project::readHealLocations() {
 
         // Read respawn data
         if (respawnEnabled) {
-            // Expression for respawn map data, e.g. "SPAWN_PALLET_TOWN - 1] = {MAP_GROUP(PALLET_TOWN_PLAYERS_HOUSE_1F), MAP_NUM(PALLET_TOWN_PLAYERS_HOUSE_1F)}"
+            // Expression for respawn map data, e.g. "SPAWN_PALLET_TOWN - 1] = {MAP_GROUP_AND_NUM(PALLET_TOWN_PLAYERS_HOUSE_1F)}"
             QRegularExpression respawnMapRegex(QString("%1\\{%2}").arg(initializerPattern).arg(mapPattern));
             match = respawnMapRegex.match(text);
             if (match.hasMatch())
