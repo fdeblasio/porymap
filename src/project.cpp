@@ -672,7 +672,8 @@ void Project::saveWildMonData() {
                 QString fieldName = fieldNamePair.first;
                 OrderedJson::object fieldObject;
                 WildMonInfo monInfo = encounterHeader.wildMons[fieldName];
-                fieldObject["encounter_rate"] = monInfo.encounterRate;
+                if (fieldName != "fishing_mons")
+                    fieldObject["encounter_rate"] = monInfo.encounterRate;
                 OrderedJson::array monArray;
                 for (WildPokemon wildMon : monInfo.wildPokemon) {
                     OrderedJson::object monEntry;
@@ -2616,7 +2617,7 @@ bool Project::readSpeciesIconPaths() {
                 missingIcons = true;
             }
         }
-        this->speciesToIconPath.insert(species, path);
+        this->speciesToIconPath.insert(species.replace("SPECIES_", ""), path);
     }
 
     // Logging this alongside every warning (if there are multiple) is obnoxious, just do it once at the end.

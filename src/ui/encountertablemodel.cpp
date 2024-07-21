@@ -77,7 +77,7 @@ QVariant EncounterTableModel::data(const QModelIndex &index, int role) const {
 
         case ColumnType::EncounterRate:
             if (row == 0) {
-                return this->monInfo.encounterRate;
+                return this->monInfo.encounterRate ?: 180;
             } else {
                 return QVariant();
             }
@@ -96,7 +96,7 @@ QVariant EncounterTableModel::data(const QModelIndex &index, int role) const {
 
         case ColumnType::EncounterRate:
             if (row == 0) {
-                return this->monInfo.encounterRate;
+                return this->monInfo.encounterRate ?: 180;
             } else {
                 return QVariant();
             }
