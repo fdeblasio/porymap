@@ -127,7 +127,6 @@ void MonTabWidget::populateTab(int tabIndex, WildMonInfo monInfo) {
     speciesTable->setModel(model);
 
     speciesTable->setItemDelegateForColumn(EncounterTableModel::ColumnType::Species, new SpeciesComboDelegate(editor->project, this));
-    speciesTable->setItemDelegateForColumn(EncounterTableModel::ColumnType::LevelRange, new SpinBoxDelegate(editor->project, this));
     speciesTable->setItemDelegateForColumn(EncounterTableModel::ColumnType::EncounterRate, new SpinBoxDelegate(editor->project, this));
 
     speciesTable->horizontalHeader()->setSectionResizeMode(EncounterTableModel::ColumnType::Slot, QHeaderView::ResizeToContents);

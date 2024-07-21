@@ -1007,7 +1007,8 @@ bool Project::saveWildMonData() {
                 QString fieldName = fieldNamePair.first;
                 OrderedJson::object monInfoObject;
                 WildMonInfo monInfo = encounterHeader.wildMons[fieldName];
-                monInfoObject["encounter_rate"] = monInfo.encounterRate;
+                if (fieldName != "fishing_mons")
+                    monInfoObject["encounter_rate"] = monInfo.encounterRate;
                 OrderedJson::array monArray;
                 for (WildPokemon wildMon : monInfo.wildPokemon) {
                     OrderedJson::object monEntry;
@@ -3315,7 +3316,7 @@ bool Project::readSpeciesIconPaths() {
                 path = iconNameToFilepath[iconName] = findSpeciesIconPath(dirNames);
             }
             if (!path.isEmpty()) {
-                this->speciesToIconPath.insert(species, QString("%1/%2").arg(this->root).arg(path));
+                this->speciesToIconPath.insert(species.replace("SPECIES_", ""), QString("%1/%2").arg(this->root).arg(path));
             }
         }
     }
