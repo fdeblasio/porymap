@@ -201,7 +201,7 @@ bool Project::load() {
                 && readMapBattleScenes()
                 && readWeatherNames()
                 && readCoordEventWeatherNames()
-                && readSecretBaseIds() 
+                && readSecretBaseIds()
                 && readBgEventFacingDirections()
                 && readTrainerTypes()
                 && readMetatileBehaviors()
@@ -1519,7 +1519,7 @@ void Project::readTilesetPaths(Tileset* tileset) {
         // Read C tileset data files
         const QString graphicsFile = projectConfig.getFilePath(ProjectFilePath::tilesets_graphics);
         const QString metatilesFile = projectConfig.getFilePath(ProjectFilePath::tilesets_metatiles);
-        
+
         const QString tilesImagePath = parser.readCIncbin(graphicsFile, tileset->tiles_label);
         const QStringList palettePaths = parser.readCIncbinArray(graphicsFile, tileset->palettes_label);
         const QString metatilesPath = parser.readCIncbin(metatilesFile, tileset->metatiles_label);
@@ -1950,7 +1950,7 @@ bool Project::readMapGroups() {
 
         const QJsonArray mapNamesJson = mapGroupsObj.take(groupName).toArray();
         this->groupNames.append(groupName);
-        
+
         // Process the names in this map group
         for (int j = 0; j < mapNamesJson.size(); j++) {
             const QString mapName = ParseUtil::jsonToQString(mapNamesJson.at(j));
@@ -3309,7 +3309,7 @@ bool Project::readSpeciesIconPaths() {
         const QString iconGraphicsFile = projectConfig.getFilePath(ProjectFilePath::data_pokemon_gfx);
         watchFile(iconGraphicsFile);
         QMap<QString, QString> iconNameToFilepath = parser.readCIncbinMulti(iconGraphicsFile);
-        
+
         for (auto i = monIconNames.constBegin(); i != monIconNames.constEnd(); i++) {
             QString path;
             QString species = i.key();
