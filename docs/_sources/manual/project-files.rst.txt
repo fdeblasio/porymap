@@ -94,8 +94,7 @@ In addition to these files, there are some specific symbol and macro names that 
    ``symbol_attribute_table``, ``sMetatileAttrMasks``, optionally read to get settings on ``Tilesets`` tab
    ``symbol_tilesets_prefix``, ``gTileset_``, for new tileset names and to extract base tileset names
    ``define_obj_event_count``, ``OBJECT_EVENT_TEMPLATES_COUNT``, to limit total Object Events
-   ``define_min_level``, ``MIN_LEVEL``, minimum wild encounters level
-   ``define_max_level``, ``MAX_LEVEL``, maximum wild encounters level
+   ``define_range``, ``LEVEL_RANGE``, range for wild encounters level
    ``define_tiles_primary``, ``NUM_TILES_IN_PRIMARY``, 
    ``define_tiles_total``, ``NUM_TILES_TOTAL``,
    ``define_metatiles_primary``, ``NUM_METATILES_IN_PRIMARY``, total metatiles are calculated using metatile ID mask

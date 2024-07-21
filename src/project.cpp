@@ -676,8 +676,7 @@ void Project::saveWildMonData() {
                 OrderedJson::array monArray;
                 for (WildPokemon wildMon : monInfo.wildPokemon) {
                     OrderedJson::object monEntry;
-                    monEntry["min_level"] = wildMon.minLevel;
-                    monEntry["max_level"] = wildMon.maxLevel;
+                    monEntry["range"] = wildMon.range;
                     monEntry["species"] = wildMon.species;
                     monArray.push_back(monEntry);
                 }
@@ -1667,8 +1666,7 @@ bool Project::readWildMonData() {
                     for (auto mon : encounterFieldObj["mons"].array_items()) {
                         WildPokemon newMon;
                         OrderedJson::object monObj = mon.object_items();
-                        newMon.minLevel = monObj["min_level"].int_value();
-                        newMon.maxLevel = monObj["max_level"].int_value();
+                        newMon.range = monObj["range"].string_value();
                         newMon.species = monObj["species"].string_value();
                         header.wildMons[field].wildPokemon.append(newMon);
                     }
@@ -2359,12 +2357,10 @@ bool Project::readMiscellaneousConstants() {
     miscConstants.clear();
     if (userConfig.getEncounterJsonActive()) {
         const QString filename = projectConfig.getFilePath(ProjectFilePath::constants_pokemon);
-        const QString minLevelName = projectConfig.getIdentifier(ProjectIdentifier::define_min_level);
-        const QString maxLevelName = projectConfig.getIdentifier(ProjectIdentifier::define_max_level);
+        const QString levelRangeName = projectConfig.getIdentifier(ProjectIdentifier::define_range);
         fileWatcher.addPath(root + "/" + filename);
-        QMap<QString, int> pokemonDefines = parser.readCDefinesByName(filename, {minLevelName, maxLevelName});
-        miscConstants.insert("max_level_define", pokemonDefines.value(maxLevelName) > pokemonDefines.value(minLevelName) ? pokemonDefines.value(maxLevelName) : 100);
-        miscConstants.insert("min_level_define", pokemonDefines.value(minLevelName) < pokemonDefines.value(maxLevelName) ? pokemonDefines.value(minLevelName) : 1);
+        QMap<QString, int> pokemonDefines = parser.readCDefinesByName(filename, {levelRangeName});
+        miscConstants.insert("range_define", pokemonDefines.value(levelRangeName));
     }
 
     const QString filename = projectConfig.getFilePath(ProjectFilePath::constants_global);

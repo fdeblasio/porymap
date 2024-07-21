@@ -6,8 +6,7 @@
 #include "orderedmap.h"
 
 struct WildPokemon {
-    int minLevel = 5;
-    int maxLevel = 5;
+    QString range = "5, 5";
     QString species = "NONE";
 };
 

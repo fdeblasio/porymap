@@ -83,8 +83,7 @@ const QMap<ProjectIdentifier, QPair<QString, QString>> ProjectConfig::defaultIde
     {ProjectIdentifier::symbol_tilesets_prefix,        {"symbol_tilesets_prefix",        "gTileset_"}},
     // Defines
     {ProjectIdentifier::define_obj_event_count,        {"define_obj_event_count",        "OBJECT_EVENT_TEMPLATES_COUNT"}},
-    {ProjectIdentifier::define_min_level,              {"define_min_level",              "MIN_LEVEL"}},
-    {ProjectIdentifier::define_max_level,              {"define_max_level",              "MAX_LEVEL"}},
+    {ProjectIdentifier::define_range,                  {"define_range",                  "LEVEL_RANGE"}},
     {ProjectIdentifier::define_tiles_primary,          {"define_tiles_primary",          "NUM_TILES_IN_PRIMARY"}},
     {ProjectIdentifier::define_tiles_total,            {"define_tiles_total",            "NUM_TILES_TOTAL"}},
     {ProjectIdentifier::define_metatiles_primary,      {"define_metatiles_primary",      "NUM_METATILES_IN_PRIMARY"}},
