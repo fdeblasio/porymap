@@ -25,7 +25,7 @@ public:
 
 public:
     enum ColumnType {
-        Slot, Group, Species, MinLevel, MaxLevel, EncounterChance, SlotRatio, EncounterRate, Count
+        Slot, Group, Species, LevelRange, EncounterChance, SlotRatio, EncounterRate, Count
     };
 
     WildMonInfo encounterData() const { return m_monInfo; }

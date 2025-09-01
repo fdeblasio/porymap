@@ -41,11 +41,8 @@ QVariant EncounterTableModel::data(const QModelIndex &index, int role) const {
         case ColumnType::Species:
             return m_monInfo.wildPokemon.value(row).species;
 
-        case ColumnType::MinLevel:
-            return m_monInfo.wildPokemon.value(row).minLevel;
-
-        case ColumnType::MaxLevel:
-            return m_monInfo.wildPokemon.value(row).maxLevel;
+        case ColumnType::LevelRange:
+            return m_monInfo.wildPokemon.value(row).range;
 
         case ColumnType::EncounterChance:
             return QString::number(m_slotPercentages.value(row, 0) * 100, 'f', 2) + "%";
@@ -69,11 +66,8 @@ QVariant EncounterTableModel::data(const QModelIndex &index, int role) const {
         case ColumnType::Species:
             return m_monInfo.wildPokemon.value(row).species;
 
-        case ColumnType::MinLevel:
-            return m_monInfo.wildPokemon.value(row).minLevel;
-
-        case ColumnType::MaxLevel:
-            return m_monInfo.wildPokemon.value(row).maxLevel;
+        case ColumnType::LevelRange:
+            return m_monInfo.wildPokemon.value(row).range;
 
         case ColumnType::EncounterRate:
             if (row == 0) {
@@ -99,10 +93,8 @@ QVariant EncounterTableModel::headerData(int section, Qt::Orientation orientatio
             return QString("Group");
         case ColumnType::Species:
             return QString("Species");
-        case ColumnType::MinLevel:
-            return QString("Min Level");
-        case ColumnType::MaxLevel:
-            return QString("Max Level");
+        case ColumnType::LevelRange:
+            return QString("Level Range");
         case ColumnType::EncounterChance:
             return QString("Encounter Chance");
         case ColumnType::SlotRatio:
@@ -156,6 +148,12 @@ bool EncounterTableModel::setData(const QModelIndex &index, const QVariant &valu
         break;
     }
 
+    case ColumnType::LevelRange: {
+        wildMon->range = value.toString();
+        emit edited();
+        break;
+    }
+
     case ColumnType::EncounterRate: {
         int encounterRate = value.toInt();
         if (m_monInfo.encounterRate != encounterRate) {
@@ -175,8 +173,7 @@ Qt::ItemFlags EncounterTableModel::flags(const QModelIndex &index) const {
     Qt::ItemFlags flags = Qt::NoItemFlags;
     switch (index.column()) {
         case ColumnType::Species:
-        case ColumnType::MinLevel:
-        case ColumnType::MaxLevel:
+        case ColumnType::LevelRange:
             flags |= Qt::ItemIsEditable;
             break;
         case ColumnType::EncounterRate:

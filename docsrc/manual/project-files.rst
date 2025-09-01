@@ -5,7 +5,7 @@ Project Files
 *************
 
 Porymap relies on the user maintaining a certain level of integrity with their project files.
-This is a list of files that porymap reads from and writes to. Generally, if porymap writes 
+This is a list of files that porymap reads from and writes to. Generally, if porymap writes
 to a file, it probably is not a good idea to edit yourself unless otherwise noted.
 
 The filepath that Porymap expects for each file can be overridden on the ``Files`` tab of ``Options > Project Settings``. A new path can be specified by entering it in the text box or choosing it with the |button-folder| button. Paths are expected to be relative to the root project folder. If no path is specified, or if the file/folder specified does not exist, then the default path will be used instead. The name of each setting in this section is listed in the table below under ``Setting``.
@@ -54,7 +54,7 @@ The filepath that Porymap expects for each file can be overridden on the ``Files
    include/constants/vars.h, yes, no, ``constants_vars``, "to find ``regex_vars`` names"
    include/constants/weather.h, yes, no, ``constants_weather``, "to find ``regex_weather`` names"
    include/constants/songs.h, yes, no, ``constants_songs``, "to find ``regex_music`` names"
-   include/constants/pokemon.h, yes, no, ``constants_pokemon``, "to evaluate ``define_min_level`` and ``define_max_level``"
+   include/constants/pokemon.h, yes, no, ``constants_pokemon``, "reads ``define_range``"
    include/constants/map_types.h, yes, no, ``constants_map_types``, "to find ``regex_map_types`` and ``regex_battle_scenes`` names"
    include/constants/trainer_types.h, yes, no, ``constants_trainer_types``, "to find ``regex_trainer_types`` names"
    include/constants/secret_bases.h, yes, no, ``constants_secret_bases``, "to find ``regex_secret_bases`` names"
@@ -95,8 +95,7 @@ In addition to these files, there are some specific symbol and macro names that 
    ``symbol_tilesets_prefix``, ``gTileset_``, "for new tileset names and to extract base tileset names"
    ``symbol_dynamic_map_name``, ``Dynamic``, "reserved map name to display for ``define_map_dynamic``"
    ``define_obj_event_count``, ``OBJECT_EVENT_TEMPLATES_COUNT``, "to limit total Object events"
-   ``define_min_level``, ``MIN_LEVEL``, "minimum wild encounters level"
-   ``define_max_level``, ``MAX_LEVEL``, "maximum wild encounters level"
+   ``define_range``, ``LEVEL_RANGE``, "range for wild encounters level"
    ``define_max_encounter_rate``, ``MAX_ENCOUNTER_RATE``, "this value / 16 will be the maximum encounter rate on the ``Wild Pokémon`` tab"
    ``define_tiles_primary``, ``NUM_TILES_IN_PRIMARY``, ""
    ``define_tiles_total``, ``NUM_TILES_TOTAL``, ""
