@@ -62,8 +62,6 @@ public:
     QSet<QString> modifiedFiles;
     bool usingAsmTilesets;
     QSet<QString> disabledSettingsNames;
-    int pokemonMinLevel;
-    int pokemonMaxLevel;
     int maxEncounterRate;
     bool wildEncountersLoaded;
 
@@ -240,7 +238,7 @@ public:
 
     static QString getExistingFilepath(QString filepath);
     void applyParsedLimits();
-    
+
     void setRegionMapEntries(const QHash<QString, MapSectionEntry> &entries);
     QHash<QString, MapSectionEntry> getRegionMapEntries() const;
 

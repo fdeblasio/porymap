@@ -1011,8 +1011,7 @@ bool Project::saveWildMonData() {
                 OrderedJson::array monArray;
                 for (WildPokemon wildMon : monInfo.wildPokemon) {
                     OrderedJson::object monEntry;
-                    monEntry["min_level"] = wildMon.minLevel;
-                    monEntry["max_level"] = wildMon.maxLevel;
+                    monEntry["range"] = wildMon.range;
                     monEntry["species"] = wildMon.species;
                     OrderedJson::append(&monEntry, wildMon.customData);
                     monArray.push_back(monEntry);
@@ -1753,20 +1752,6 @@ bool Project::readWildMonData() {
     if (defines.contains(maxEncounterRateName))
         this->maxEncounterRate = defines.value(maxEncounterRateName)/16;
 
-    // Read min/max level
-    const QString levelRangeFile = projectConfig.getFilePath(ProjectFilePath::constants_pokemon);
-    const QString minLevelName = projectConfig.getIdentifier(ProjectIdentifier::define_min_level);
-    const QString maxLevelName = projectConfig.getIdentifier(ProjectIdentifier::define_max_level);
-    watchFile(levelRangeFile);
-    defines = parser.readCDefinesByName(levelRangeFile, {minLevelName, maxLevelName});
-    if (defines.contains(minLevelName))
-        this->pokemonMinLevel = defines.value(minLevelName);
-    if (defines.contains(maxLevelName))
-        this->pokemonMaxLevel = defines.value(maxLevelName);
-
-    this->pokemonMinLevel = qMin(this->pokemonMinLevel, this->pokemonMaxLevel);
-    this->pokemonMaxLevel = qMax(this->pokemonMinLevel, this->pokemonMaxLevel);
-
     // Read encounter data
     const QString wildMonJsonFilepath = projectConfig.getFilePath(ProjectFilePath::json_wild_encounters);
     watchFile(wildMonJsonFilepath);
@@ -1873,8 +1858,7 @@ bool Project::readWildMonData() {
                     OrderedJson::object monObj = monJson.object_items();
 
                     WildPokemon newMon;
-                    newMon.minLevel = monObj.take("min_level").int_value();
-                    newMon.maxLevel = monObj.take("max_level").int_value();
+                    newMon.range = monObj.take("range").string_value();
                     newMon.species = monObj.take("species").string_value();
                     newMon.customData = monObj;
                     monInfo.wildPokemon.append(newMon);

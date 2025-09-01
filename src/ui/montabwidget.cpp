@@ -127,15 +127,13 @@ void MonTabWidget::populateTab(int tabIndex, WildMonInfo monInfo) {
     speciesTable->setModel(model);
 
     speciesTable->setItemDelegateForColumn(EncounterTableModel::ColumnType::Species, new SpeciesComboDelegate(editor->project, this));
-    speciesTable->setItemDelegateForColumn(EncounterTableModel::ColumnType::MinLevel, new SpinBoxDelegate(editor->project, this));
-    speciesTable->setItemDelegateForColumn(EncounterTableModel::ColumnType::MaxLevel, new SpinBoxDelegate(editor->project, this));
+    speciesTable->setItemDelegateForColumn(EncounterTableModel::ColumnType::LevelRange, new SpinBoxDelegate(editor->project, this));
     speciesTable->setItemDelegateForColumn(EncounterTableModel::ColumnType::EncounterRate, new SpinBoxDelegate(editor->project, this));
 
     speciesTable->horizontalHeader()->setSectionResizeMode(EncounterTableModel::ColumnType::Slot, QHeaderView::ResizeToContents);
     speciesTable->horizontalHeader()->setSectionResizeMode(EncounterTableModel::ColumnType::Group, QHeaderView::ResizeToContents);
     speciesTable->horizontalHeader()->setSectionResizeMode(EncounterTableModel::ColumnType::Species, QHeaderView::Stretch);
-    speciesTable->horizontalHeader()->setSectionResizeMode(EncounterTableModel::ColumnType::MinLevel, QHeaderView::Stretch);
-    speciesTable->horizontalHeader()->setSectionResizeMode(EncounterTableModel::ColumnType::MaxLevel, QHeaderView::Stretch);
+    speciesTable->horizontalHeader()->setSectionResizeMode(EncounterTableModel::ColumnType::LevelRange, QHeaderView::Stretch);
     speciesTable->horizontalHeader()->setSectionResizeMode(EncounterTableModel::ColumnType::SlotRatio, QHeaderView::ResizeToContents);
     speciesTable->horizontalHeader()->setSectionResizeMode(EncounterTableModel::ColumnType::EncounterChance, QHeaderView::ResizeToContents);
     speciesTable->horizontalHeader()->setSectionResizeMode(EncounterTableModel::ColumnType::EncounterRate, QHeaderView::ResizeToContents);

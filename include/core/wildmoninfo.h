@@ -8,10 +8,9 @@
 class WildPokemon {
 public:
     WildPokemon();
-    WildPokemon(int minLevel, int maxLevel, const QString &species);
+    WildPokemon(const QString &range, const QString &species);
 
-    int minLevel;
-    int maxLevel;
+    QString range;
     QString species;
     OrderedJson::object customData;
 };

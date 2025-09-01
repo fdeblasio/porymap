@@ -52,11 +52,7 @@ QWidget *SpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewIt
     editor->setFrame(false);
 
     int col = index.column();
-    if (col == EncounterTableModel::ColumnType::MinLevel || col == EncounterTableModel::ColumnType::MaxLevel) {
-        editor->setMinimum(this->project->pokemonMinLevel);
-        editor->setMaximum(this->project->pokemonMaxLevel);
-    }
-    else if (col == EncounterTableModel::ColumnType::EncounterRate) {
+    if (col == EncounterTableModel::ColumnType::EncounterRate) {
         editor->setMinimum(0);
         editor->setMaximum(this->project->maxEncounterRate);
     }

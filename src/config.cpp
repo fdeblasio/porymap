@@ -85,8 +85,7 @@ const QMap<ProjectIdentifier, QPair<QString, QString>> ProjectConfig::defaultIde
     {ProjectIdentifier::symbol_dynamic_map_name,       {"symbol_dynamic_map_name",       "Dynamic"}},
     // Defines
     {ProjectIdentifier::define_obj_event_count,        {"define_obj_event_count",        "OBJECT_EVENT_TEMPLATES_COUNT"}},
-    {ProjectIdentifier::define_min_level,              {"define_min_level",              "MIN_LEVEL"}},
-    {ProjectIdentifier::define_max_level,              {"define_max_level",              "MAX_LEVEL"}},
+    {ProjectIdentifier::define_range,                  {"define_range",                  "LEVEL_RANGE"}},
     {ProjectIdentifier::define_max_encounter_rate,     {"define_max_encounter_rate",     "MAX_ENCOUNTER_RATE"}},
     {ProjectIdentifier::define_tiles_primary,          {"define_tiles_primary",          "NUM_TILES_IN_PRIMARY"}},
     {ProjectIdentifier::define_tiles_total,            {"define_tiles_total",            "NUM_TILES_TOTAL"}},
@@ -677,7 +676,7 @@ QMap<QString, QString> PorymapConfig::getKeyValueMap() {
     map.insert("application_font", this->applicationFont.toString());
     map.insert("map_list_font", this->mapListFont.toString());
     map.insert("image_export_color_space_id", QString::number(this->imageExportColorSpaceId));
-    
+
     return map;
 }
 
@@ -1471,7 +1470,7 @@ void ShortcutsConfig::storeShortcuts(
     }
 }
 
-/* Creates a config key from the object's name prepended with the parent 
+/* Creates a config key from the object's name prepended with the parent
  * window's object name, and converts camelCase to snake_case. */
 QString ShortcutsConfig::cfgKey(const QObject *object) const {
     auto cfg_key = QString();

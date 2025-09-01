@@ -2,13 +2,12 @@
 #include "montabwidget.h"
 #include "project.h"
 
-WildPokemon::WildPokemon(int minLevel, int maxLevel, const QString &species)
-    : minLevel(minLevel),
-      maxLevel(maxLevel),
+WildPokemon::WildPokemon(const QString &range, const QString &species)
+    : range(range),
       species(species)
 {}
 
-WildPokemon::WildPokemon() : WildPokemon(5, 5, Project::getEmptySpeciesName())
+WildPokemon::WildPokemon() : WildPokemon("5, 5", Project::getEmptySpeciesName())
 {}
 
 QMap<QString, int> defaultEncounterRates;

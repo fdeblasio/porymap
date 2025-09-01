@@ -11,7 +11,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=eb07c574" />
 
-  
+
     <link rel="shortcut icon" href="../_static/porymap-icon-2.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
@@ -22,17 +22,17 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Breaking Changes" href="breaking-changes.html" />
-    <link rel="prev" title="Scripting Capabilities" href="scripting-capabilities.html" /> 
+    <link rel="prev" title="Scripting Capabilities" href="scripting-capabilities.html" />
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: linear-gradient(180deg, #08ACD5 50%, #FF6262 0%);" >
 
-          
-          
+
+
           <a href="../index.html" class="icon icon-home">
             porymap
           </a>
@@ -424,7 +424,7 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-             
+
   <section id="project-files">
 <span id="files"></span><h1>Project Files<a class="headerlink" href="#project-files" title="Link to this heading"></a></h1>
 <p>Porymap relies on the user maintaining a certain level of integrity with their project files.
@@ -642,7 +642,7 @@ to a file, it probably is not a good idea to edit yourself unless otherwise note
 <td><p>yes</p></td>
 <td><p>no</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">constants_pokemon</span></code></p></td>
-<td><p>to evaluate <code class="docutils literal notranslate"><span class="pre">define_min_level</span></code> and <code class="docutils literal notranslate"><span class="pre">define_max_level</span></code></p></td>
+<td><p>to evaluate <code class="docutils literal notranslate"><span class="pre">define_range</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>include/constants/map_types.h</p></td>
 <td><p>yes</p></td>
@@ -790,13 +790,9 @@ to a file, it probably is not a good idea to edit yourself unless otherwise note
 <td><p><code class="docutils literal notranslate"><span class="pre">OBJECT_EVENT_TEMPLATES_COUNT</span></code></p></td>
 <td><p>to limit total Object events</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">define_min_level</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">MIN_LEVEL</span></code></p></td>
-<td><p>minimum wild encounters level</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">define_max_level</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">MAX_LEVEL</span></code></p></td>
-<td><p>maximum wild encounters level</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">define_range</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LEVEL_RANGE</span></code></p></td>
+<td><p>range for encounters level</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">define_max_encounter_rate</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">MAX_ENCOUNTER_RATE</span></code></p></td>
@@ -1014,7 +1010,7 @@ to a file, it probably is not a good idea to edit yourself unless otherwise note
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+
 
 </footer>
         </div>
@@ -1025,7 +1021,7 @@ to a file, it probably is not a good idea to edit yourself unless otherwise note
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
 
 </body>
 </html>
