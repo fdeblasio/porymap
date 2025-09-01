@@ -86,8 +86,7 @@ QList<WildMonSearch::RowData> WildMonSearch::search(const QString &species) cons
                         rowData.mapName = this->project->mapConstantsToMapNames.value(mapConstant, mapConstant);
 
                         // If min and max level are the same display a single number, otherwise display a level range.
-                        rowData.levelRange = (wildMon.minLevel == wildMon.maxLevel) ? QString::number(wildMon.minLevel)
-                                                                                    : QString("%1-%2").arg(wildMon.minLevel).arg(wildMon.maxLevel);
+                        rowData.levelRange = QString("%1").arg(wildMon.range);
                         rowData.chance = this->percentageStrings[fieldName][slot];
                         results.append(rowData);
                     }

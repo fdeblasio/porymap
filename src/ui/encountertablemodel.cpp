@@ -128,26 +128,6 @@ bool EncounterTableModel::setData(const QModelIndex &index, const QVariant &valu
         break;
     }
 
-    case ColumnType::MinLevel: {
-        int minLevel = value.toInt();
-        if (wildMon->minLevel != minLevel) {
-            wildMon->minLevel = minLevel;
-            wildMon->maxLevel = qMax(minLevel, wildMon->maxLevel);
-            emit edited();
-        }
-        break;
-    }
-
-    case ColumnType::MaxLevel: {
-        int maxLevel = value.toInt();
-        if (wildMon->maxLevel != maxLevel) {
-            wildMon->maxLevel = maxLevel;
-            wildMon->minLevel = qMin(maxLevel, wildMon->minLevel);
-            emit edited();
-        }
-        break;
-    }
-
     case ColumnType::LevelRange: {
         wildMon->range = value.toString();
         emit edited();

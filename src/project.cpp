@@ -1734,8 +1734,6 @@ bool Project::readWildMonData() {
     this->wildMonData.clear();
     this->wildMonTableName.clear();
     this->encounterGroupLabels.clear();
-    this->pokemonMinLevel = 0;
-    this->pokemonMaxLevel = 100;
     this->maxEncounterRate = 2880/16;
     this->wildEncountersLoaded = false;
     this->customWildMonData = OrderedJson::object();
