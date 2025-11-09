@@ -1011,8 +1011,12 @@ bool Project::saveWildMonData() {
                 QString fieldName = fieldNamePair.first;
                 OrderedJson::object monInfoObject;
                 WildMonInfo monInfo = encounterHeader.wildMons[fieldName];
-                if (fieldName != "fishing_mons")
-                    monInfoObject["encounter_rate"] = monInfo.encounterRate;
+                if (fieldName != "fishing_mons") {
+                    if (groupLabel.contains("gSafariZone"))
+                        monInfoObject["encounter_rate"] = "SAFARI_ZONE_ENCOUNTER_RATE";
+                    else
+                        monInfoObject["encounter_rate"] = monInfo.encounterRate;
+                }
                 OrderedJson::array monArray;
                 for (WildPokemon wildMon : monInfo.wildPokemon) {
                     OrderedJson::object monEntry;
