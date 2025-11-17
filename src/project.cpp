@@ -1018,9 +1018,21 @@ bool Project::saveWildMonData() {
                         monInfoObject["encounter_rate"] = monInfo.encounterRate;
                 }
                 OrderedJson::array monArray;
+                QString generalRange = monInfo.wildPokemon[0].range;
+                for (WildPokemon wildMon : monInfo.wildPokemon) {
+                    if (wildMon.range != generalRange){
+                        generalRange = "";
+                        break;
+                    }
+                }
+                if (generalRange != "") {
+                    monInfoObject["range"] = generalRange;
+                }
                 for (WildPokemon wildMon : monInfo.wildPokemon) {
                     OrderedJson::object monEntry;
-                    monEntry["range"] = wildMon.range;
+                    if (generalRange == "") {
+                        monEntry["range"] = wildMon.range;
+                    }
                     monEntry["species"] = wildMon.species;
                     OrderedJson::append(&monEntry, wildMon.customData);
                     monArray.push_back(monEntry);
@@ -1855,6 +1867,12 @@ bool Project::readWildMonData() {
 
                 // Read encounter rate
                 monInfo.encounterRate = encounterFieldObj.take("encounter_rate").int_value();
+                monInfo.range = "";
+
+                if (encounterFieldObj.contains("range")) {
+                    monInfo.range = encounterFieldObj.take("range").string_value();
+                }
+
                 encounterRateFrequencyMaps[field][monInfo.encounterRate]++;
 
                 // Read wild pokémon list
@@ -1863,7 +1881,11 @@ bool Project::readWildMonData() {
                     OrderedJson::object monObj = monJson.object_items();
 
                     WildPokemon newMon;
-                    newMon.range = monObj.take("range").string_value();
+                    if (monInfo.range == "") {
+                        newMon.range = monObj.take("range").string_value();
+                    } else {
+                        newMon.range = monInfo.range;
+                    }
                     newMon.species = monObj.take("species").string_value();
                     newMon.customData = monObj;
                     monInfo.wildPokemon.append(newMon);

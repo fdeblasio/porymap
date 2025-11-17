@@ -18,6 +18,7 @@ public:
 struct WildMonInfo {
     bool active = false;
     int encounterRate = 0;
+    QString range;
     QVector<WildPokemon> wildPokemon;
     OrderedJson::object customData;
 };
